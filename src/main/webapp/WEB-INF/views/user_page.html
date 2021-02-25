@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User_Page</title>
+</head>
+<body>
+<table border="1">
+    <tbody>
+    <tr>
+        <th><b th:text="ID"></b></th>
+        <th><b th:text="Name"></b></th>
+        <th><b th:text="Age"></b></th>
+        <th><b th:text="Email"></b></th>
+    </tr>
+    <tr>
+        <td><a th:text="${user.getId()}">ID</a></td>
+        <td><a th:text="${user.getName()}">Name</a></td>
+        <td><a th:text="${user.getAge()}">Age</a></td>
+        <td><a th:text="${user.getEmail()}">Email</a></td>
+    </tr>
+    <tr>
+        <form th:method="POST" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+            <td><input type="submit" value="Edit"></td>
+            <td><input th:field="*{name}" type="text" th:value="${user.getName()}"/></td>
+            <td><input th:field="*{age}" type="text" th:value="${user.getAge()}"/></td>
+            <td><input th:field="*{email}" type="text" th:value="${user.getEmail()}"/></td>
+        </form>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/users}"><input type="submit" value="Back"></a>
+</body>
+</html>
